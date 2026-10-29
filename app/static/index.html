@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CareerLens | Resume Analyzer</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <header class="topbar"><a class="brand" href="/">Career<span>Lens</span></a><span>Placement cell toolkit</span></header>
+    <main>
+      <section class="hero"><p class="eyebrow">AI-ASSISTED CAREER READINESS</p><h1>Turn your resume into a clearer career plan.</h1><p class="hero-copy">Discover your strengths, explore suitable roles, find skill gaps, and get practical next steps before your next placement drive.</p></section>
+      <section class="workspace">
+        <form id="analyzer-form" class="card input-card">
+          <div class="section-heading"><div><p class="eyebrow">STEP 01</p><h2>Share your resume</h2></div><span class="mode-badge">Local demo mode</span></div>
+          <label class="dropzone" id="dropzone"><input id="resume-file" type="file" accept=".pdf,.docx" /><strong>Drop a PDF or DOCX here</strong><span>or click to browse · max 5 MB</span><em id="file-name"></em></label>
+          <div class="divider"><span>OR PASTE TEXT</span></div>
+          <label for="resume-text">Resume content</label><textarea id="resume-text" minlength="50" maxlength="50000" placeholder="Paste your resume text here..."></textarea>
+          <div class="form-row"><label for="target-role">Target role <span>(optional)</span></label><select id="target-role"><option value="">Recommend roles for me</option><option>Software Developer</option><option>Data Analyst</option><option>Web Developer</option><option>AI/ML Engineer</option><option>Cybersecurity Analyst</option><option>Cloud Engineer</option></select></div>
+          <button class="primary" type="submit">Analyze my resume <span>→</span></button><p class="privacy">Your resume is processed for this analysis and is not stored by the demo.</p>
+        </form>
+        <section id="results" class="results" hidden><div class="results-head"><div><p class="eyebrow">YOUR CAREER SNAPSHOT</p><h2>Analysis results</h2></div><button id="print-report" class="secondary">Export report</button></div><div id="result-content"></div></section>
+      </section>
+      <div id="status" role="status" aria-live="polite"></div>
+    </main>
+    <script src="/static/app.js"></script>
+  </body>
+</html>
