@@ -44,7 +44,7 @@ async def extract_resume_text(file: UploadFile) -> str:
             detail="The file could not be parsed. Please upload a valid PDF or DOCX.",
         ) from exc
 
-    cleaned = " ".join(text.split())
+    cleaned = "\n".join(line.strip() for line in text.splitlines() if line.strip())
     if len(cleaned) < 50:
         raise HTTPException(
             status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,

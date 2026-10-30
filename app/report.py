@@ -19,7 +19,7 @@ def build_analysis_report(analysis: AnalysisResult) -> bytes:
         leftMargin=18 * mm,
         topMargin=16 * mm,
         bottomMargin=16 * mm,
-        title="CareerLens Resume Analysis",
+        title="Elevix Resume Analysis",
     )
     styles = getSampleStyleSheet()
     title_style = ParagraphStyle(
@@ -38,7 +38,7 @@ def build_analysis_report(analysis: AnalysisResult) -> bytes:
     )
     body_style = styles["BodyText"]
     story = [
-        Paragraph("CareerLens Resume Analysis", title_style),
+        Paragraph("Elevix Resume Analysis", title_style),
         Paragraph("Resume summary", heading_style),
         Paragraph(analysis.resume_summary, body_style),
         Paragraph("Skills detected", heading_style),

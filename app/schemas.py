@@ -1,11 +1,28 @@
 from typing import Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
 
 class AnalysisRequest(BaseModel):
     resume_text: str = Field(..., min_length=50, max_length=50_000)
     target_role: str | None = Field(default=None, max_length=100)
+
+
+class JobMatchRequest(BaseModel):
+    resume_text: str = Field(..., min_length=50, max_length=50_000)
+    job_description: str = Field(..., min_length=50, max_length=20_000)
+
+
+class BulletRewriteRequest(BaseModel):
+    bullet: str = Field(..., min_length=10, max_length=1_000)
+
+    @field_validator("bullet")
+    @classmethod
+    def require_bullet_text(cls, value: str) -> str:
+        cleaned = value.strip().strip(" •-\t")
+        if len(cleaned) < 10 or not any(character.isalnum() for character in cleaned):
+            raise ValueError("Provide a resume bullet with at least 10 meaningful characters.")
+        return cleaned
 
 
 class JobRecommendation(BaseModel):

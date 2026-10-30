@@ -3,26 +3,130 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>CareerLens | Resume Analyzer</title>
+    <meta name="theme-color" content="#101225" />
+    <meta name="description" content="Elevix turns resume evidence into practical career insights, job comparisons, and learning plans." />
+    <title>Elevix | Career intelligence</title>
     <link rel="stylesheet" href="/static/styles.css" />
   </head>
   <body>
-    <header class="topbar"><a class="brand" href="/">Career<span>Lens</span></a><span>Placement cell toolkit</span></header>
-    <main>
-      <section class="hero"><p class="eyebrow">AI-ASSISTED CAREER READINESS</p><h1>Turn your resume into a clearer career plan.</h1><p class="hero-copy">Discover your strengths, explore suitable roles, find skill gaps, and get practical next steps before your next placement drive.</p></section>
-      <section class="workspace">
-        <form id="analyzer-form" class="card input-card">
-          <div class="section-heading"><div><p class="eyebrow">STEP 01</p><h2>Share your resume</h2></div><span class="mode-badge">Local demo mode</span></div>
-          <label class="dropzone" id="dropzone"><input id="resume-file" type="file" accept=".pdf,.docx" /><strong>Drop a PDF or DOCX here</strong><span>or click to browse · max 5 MB</span><em id="file-name"></em></label>
-          <div class="divider"><span>OR PASTE TEXT</span></div>
-          <label for="resume-text">Resume content</label><textarea id="resume-text" minlength="50" maxlength="50000" placeholder="Paste your resume text here..."></textarea>
-          <div class="form-row"><label for="target-role">Target role <span>(optional)</span></label><select id="target-role"><option value="">Recommend roles for me</option><option>Software Developer</option><option>Data Analyst</option><option>Web Developer</option><option>AI/ML Engineer</option><option>Cybersecurity Analyst</option><option>Cloud Engineer</option></select></div>
-          <button class="primary" type="submit">Analyze my resume <span>→</span></button><p class="privacy">Your resume is processed for this analysis and is not stored by the demo.</p>
-        </form>
-        <section id="results" class="results" hidden><div class="results-head"><div><p class="eyebrow">YOUR CAREER SNAPSHOT</p><h2>Analysis results</h2></div><button id="print-report" class="secondary">Export report</button></div><div id="result-content"></div></section>
-      </section>
-      <div id="status" role="status" aria-live="polite"></div>
-    </main>
+    <div class="ambient ambient-one" aria-hidden="true"></div>
+    <div class="ambient ambient-two" aria-hidden="true"></div>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar">
+        <a class="brand" href="#dashboard" aria-label="Elevix home">
+          <span class="brand-mark" aria-hidden="true">✦</span>
+          <span>elev<span class="brand-accent">ix</span></span>
+        </a>
+        <p class="nav-caption">WORKSPACE</p>
+        <nav class="side-nav" aria-label="Main navigation">
+          <a class="nav-link active" href="#dashboard"><span class="nav-icon">⌂</span>Overview</a>
+          <a class="nav-link" href="#resume"><span class="nav-icon">⇧</span>Resume analysis</a>
+          <a class="nav-link" href="#insights"><span class="nav-icon">◈</span>Career insights</a>
+          <a class="nav-link" href="#match"><span class="nav-icon">⌕</span>Job match</a>
+          <a class="nav-link" href="#toolkit"><span class="nav-icon">✳</span>Career toolkit</a>
+          <a class="nav-link" href="#compare"><span class="nav-icon">⇄</span>Compare versions</a>
+        </nav>
+        <div class="sidebar-bottom">
+          <div class="privacy-card">
+            <span class="privacy-icon">◉</span>
+            <div><strong>Private by design</strong><p>Resume files are processed for your request, not saved.</p></div>
+          </div>
+          <a class="nav-link settings-link" href="#settings"><span class="nav-icon">⚙</span>Preferences</a>
+          <div class="user-chip"><span class="avatar">CL</span><span><strong>Career workspace</strong><small>Local analysis mode</small></span><span class="user-more">···</span></div>
+        </div>
+      </aside>
+      <button class="sidebar-scrim" id="sidebar-scrim" aria-label="Close navigation" hidden></button>
+
+      <main class="main-content" id="dashboard">
+        <header class="topbar">
+          <button class="icon-button menu-toggle" id="menu-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+          <div class="breadcrumbs"><span>Workspace</span><span class="crumb-slash">/</span><strong>Overview</strong></div>
+          <div class="top-actions">
+            <span class="mode-indicator"><i></i> Rule-based mode</span>
+            <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light mode"><span id="theme-icon">☼</span><span id="theme-label">Light mode</span></button>
+            <span class="top-avatar" aria-hidden="true">CL</span>
+          </div>
+        </header>
+
+        <section class="welcome section-anchor">
+          <div>
+            <p class="eyebrow"><span class="spark">✦</span> YOUR CAREER, WITH MORE CLARITY</p>
+            <h1>Make your next move<br /><span class="gradient-text">a little more intentional.</span></h1>
+            <p class="welcome-copy">Turn the experience already on your resume into practical insights, role matches, and a plan you can act on.</p>
+            <div class="welcome-tags"><span>✧ Evidence-led insights</span><span>◉ Resume stays private</span><span>⌁ No account required</span></div>
+          </div>
+          <div class="welcome-orb" aria-hidden="true"><div class="orb-core">✦</div><span class="orb-ring ring-one"></span><span class="orb-ring ring-two"></span><span class="orb-dot dot-one"></span><span class="orb-dot dot-two"></span></div>
+        </section>
+
+        <section class="section-block" id="resume">
+          <div class="section-title-row"><div><p class="eyebrow">START WITH YOUR EXPERIENCE</p><h2>Resume analysis</h2></div><span class="section-number">01</span></div>
+          <form id="analyzer-form" class="glass-card upload-card">
+            <div class="upload-intro"><div class="upload-icon">✦</div><div><h3>Bring your career story into focus</h3><p>Upload a resume or paste its text to see evidence-based insights across skills, fit, and next steps.</p></div></div>
+            <div class="upload-grid">
+              <label class="dropzone" id="dropzone">
+                <input id="resume-file" type="file" accept=".pdf,.docx" />
+                <span class="upload-symbol">↑</span><strong>Drop your resume here</strong><span>or <u>browse files</u> · PDF or DOCX · up to 5 MB</span><em id="file-name"></em>
+              </label>
+              <div class="paste-area"><label for="resume-text">Or paste resume text</label><textarea id="resume-text" minlength="50" maxlength="50000" placeholder="Paste your resume content here. Include headings, skills, projects, and experience for a more complete analysis."></textarea><div class="input-footnote"><span>At least 50 characters</span><span id="char-count">0 / 50,000</span></div></div>
+            </div>
+            <div class="analyze-row"><label class="role-picker" for="target-role"><span>Target role</span><select id="target-role"><option value="">Select a role (optional)</option><option>Software Developer</option><option>Data Analyst</option><option>Web Developer</option><option>AI/ML Engineer</option><option>Cybersecurity Analyst</option><option>Cloud Engineer</option></select></label><button class="primary-button" type="submit"><span>Analyze my resume</span><span aria-hidden="true">→</span></button></div>
+            <p class="privacy-note">Your resume is processed for this analysis and is not stored by the demo. Scores describe text evidence, not actual proficiency or hiring outcomes.</p>
+          </form>
+        </section>
+
+        <section class="section-block" id="insights">
+          <div class="section-title-row"><div><p class="eyebrow">YOUR CAREER SNAPSHOT</p><h2>Career intelligence</h2><p class="section-description">A structured view of the evidence found in your resume.</p></div><div class="insight-actions"><span class="evidence-badge">Evidence indicators · not proficiency scores</span><button id="print-report" class="secondary-button" disabled>⇩ Export PDF</button></div></div>
+          <div id="insights-empty" class="glass-card empty-state"><span class="empty-art">✧</span><h3>Your insights will take shape here</h3><p>Analyze a resume to see detected skills, career evidence, ATS categories, and placement-readiness indicators.</p><a class="text-link" href="#resume">Analyze a resume <span>→</span></a></div>
+          <div id="insights-content" hidden>
+            <div class="summary-card glass-card"><div class="summary-orb">✦</div><div><span class="card-kicker">RESUME SUMMARY</span><p id="resume-summary"></p></div></div>
+            <div class="insight-grid">
+              <article class="glass-card panel-card"><div class="panel-heading"><div><span class="card-kicker">CAREER DNA</span><h3>Your evidence profile</h3></div><span class="panel-icon violet-icon">◈</span></div><p class="micro-copy" id="dna-note"></p><div id="dna-bars" class="metric-bars"></div><div class="chip-list" id="skill-chips"></div><div class="strengths-block"><strong>Resume-supported strengths</strong><ul id="strength-list"></ul></div></article>
+              <article class="glass-card panel-card"><div class="panel-heading"><div><span class="card-kicker">ATS BREAKDOWN</span><h3>Resume structure check</h3></div><span class="score-ring" id="ats-score"></span></div><p class="micro-copy" id="ats-disclaimer"></p><div id="ats-bars" class="category-bars"></div><details class="deductions"><summary>See improvement opportunities</summary><ul id="ats-deductions"></ul></details></article>
+              <article class="glass-card panel-card"><div class="panel-heading"><div><span class="card-kicker">PLACEMENT READINESS</span><h3>Evidence-based snapshot</h3></div><span class="score-ring readiness-ring" id="readiness-score"></span></div><p class="micro-copy" id="readiness-formula"></p><div id="readiness-bars" class="category-bars"></div><div class="readiness-columns"><div><strong>Strengths</strong><ul id="readiness-strengths"></ul></div><div><strong>Weaknesses</strong><ul id="readiness-weaknesses"></ul></div><div><strong>Priority improvements</strong><ul id="readiness-priorities"></ul></div></div><p class="micro-copy" id="readiness-disclaimer"></p></article>
+              <article class="glass-card panel-card"><div class="panel-heading"><div><span class="card-kicker">ROLE RECOMMENDATIONS</span><h3>Paths worth exploring</h3></div><span class="panel-icon blue-icon">⌁</span></div><div id="role-list" class="role-list"></div></article>
+              <article class="glass-card panel-card"><div class="panel-heading"><div><span class="card-kicker">SKILL GAPS</span><h3>Evidence to build next</h3></div><span class="panel-icon cyan-icon">⌁</span></div><div id="skill-gap-list" class="role-list"></div></article>
+              <article class="glass-card panel-card"><div class="panel-heading"><div><span class="card-kicker">RESUME FEEDBACK</span><h3>Ways to make your evidence clearer</h3></div><span class="panel-icon violet-icon">✎</span></div><div id="resume-improvements" class="role-list"></div></article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-block" id="match">
+          <div class="section-title-row"><div><p class="eyebrow">A MORE SPECIFIC COMPARISON</p><h2>Job match simulator</h2><p class="section-description">Compare resume text with a role description. The score formula is shown with the result.</p></div><span class="section-number">02</span></div>
+          <div class="feature-layout">
+            <form id="match-form" class="glass-card feature-card"><label for="job-description">Paste a job description</label><textarea id="job-description" minlength="50" maxlength="20000" placeholder="Paste the responsibilities, qualifications, and skills from a job listing..."></textarea><p class="helper-text">Your analyzed resume is used. Analyze it above first.</p><button class="primary-button" type="submit" id="match-button" disabled><span>Compare with this role</span><span>→</span></button></form>
+            <div id="match-result" class="glass-card feature-result empty-feature"><span class="panel-icon violet-icon">⌕</span><h3>Find your overlap</h3><p>Your match will show detected skills, related experience, keyword overlap, and role-specific next steps.</p></div>
+          </div>
+        </section>
+
+        <section class="section-block" id="toolkit">
+          <div class="section-title-row"><div><p class="eyebrow">PRACTICAL NEXT STEPS</p><h2>Your career toolkit</h2><p class="section-description">Build on resume-supported evidence with focused practice and preparation.</p></div><span class="section-number">03</span></div>
+          <div class="toolkit-grid">
+            <article class="glass-card tool-card roadmap-card"><div class="panel-heading"><div><span class="card-kicker">SMART ROADMAP</span><h3>30 · 60 · 90 day plan</h3></div><span class="panel-icon cyan-icon">⌁</span></div><div id="roadmap-content" class="tool-empty">Analyze a resume to create a role-focused roadmap from detected skill gaps.</div></article>
+            <article class="glass-card tool-card interview-card"><div class="panel-heading"><div><span class="card-kicker">INTERVIEW PRACTICE</span><h3>Questions grounded in your resume</h3></div><span class="panel-icon blue-icon">✳</span></div><p class="tool-description">Practice technical, project, scenario, and HR questions based on the experience you provided.</p><button id="generate-interview" class="secondary-button" disabled>Generate practice questions <span>→</span></button><div id="interview-content" class="interview-list"></div></article>
+            <article class="glass-card tool-card rewrite-card"><div class="panel-heading"><div><span class="card-kicker">BULLET REWRITER</span><h3>Make a resume bullet clearer</h3></div><span class="panel-icon violet-icon">✎</span></div><form id="rewrite-form"><label for="bullet-input">Paste one existing bullet</label><textarea id="bullet-input" minlength="10" maxlength="1000" placeholder="Use only a claim you can support. Example: Built a dashboard using Python and SQL."></textarea><button class="secondary-button" type="submit">Show grounded rewrite <span>→</span></button></form><div id="rewrite-result" class="rewrite-results"></div></article>
+          </div>
+        </section>
+
+        <section class="section-block" id="compare">
+          <div class="section-title-row"><div><p class="eyebrow">TRACK YOUR PROGRESS</p><h2>Compare resume versions</h2><p class="section-description">Compare two PDF/DOCX resumes using the same transparent checks.</p></div><span class="section-number">04</span></div>
+          <form id="compare-form" class="glass-card compare-card">
+            <label class="version-upload"><span class="version-number">A</span><span class="version-copy"><strong>Earlier resume</strong><small>Select the first version to compare</small></span><input id="first-version" type="file" accept=".pdf,.docx" required /><span class="file-pick" id="first-name">Choose file</span></label>
+            <span class="compare-arrow">⇄</span>
+            <label class="version-upload"><span class="version-number version-b">B</span><span class="version-copy"><strong>Updated resume</strong><small>Select the newer version</small></span><input id="second-version" type="file" accept=".pdf,.docx" required /><span class="file-pick" id="second-name">Choose file</span></label>
+            <button class="primary-button" id="compare-button" type="submit"><span>Compare versions</span><span>→</span></button>
+          </form>
+          <div id="compare-result" class="glass-card compare-result" hidden></div>
+        </section>
+
+        <section class="section-block settings-section" id="settings">
+          <div class="section-title-row"><div><p class="eyebrow">YOUR PREFERENCES</p><h2>Workspace settings</h2><p class="section-description">The selected role and appearance are applied locally to this browser session.</p></div><span class="section-number">05</span></div>
+          <div class="glass-card settings-card"><div><span class="panel-icon violet-icon">⚙</span></div><div class="settings-copy"><h3>Appearance</h3><p>Switch between the dark glass interface and a light, high-contrast theme.</p></div><button class="secondary-button" id="settings-theme" type="button">Switch theme</button><div class="settings-divider"></div><div><span class="panel-icon cyan-icon">◉</span></div><div class="settings-copy"><h3>Data handling</h3><p>Analysis runs locally in rule-based mode. Resume uploads are not persisted by this demo.</p></div><span class="status-pill">No account data stored</span></div>
+        </section>
+
+        <footer class="footer"><a class="footer-brand" href="#dashboard">Elevix</a><span>Career insights from resume evidence, not guarantees.</span><a href="#resume">Back to top ↑</a></footer>
+      </main>
+    </div>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
     <script src="/static/app.js"></script>
   </body>
 </html>
